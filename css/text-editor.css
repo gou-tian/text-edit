@@ -1,0 +1,211 @@
+@charset "UTF-8";
+.tian-editor-box,.tian-add-link-box,.tian-edit-mask {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+.tian-editor-box {
+	width: 612px;
+	height: 300px;
+	border: 2px solid #ccc\9;
+}
+.tian-edit-mask {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+}
+.box-shadow {
+	-webkit-box-shadow: inset 0 0 3px #ccc;
+  -moz-box-shadow: inset 0 0 3px #ccc;
+  box-shadow: inset 0 0 3px #ccc;
+}
+.linear {
+	background: -webkit-linear-gradient(#f7f7f7 49%,#e1e1e1 50%,#eaeaea 51%, #ccc 100%); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#f7f7f7 49%,#e1e1e1 50%,#eaeaea 51%, #ccc 100%); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#f7f7f7 49%,#e1e1e1 50%,#eaeaea 51%, #ccc 100%); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#f7f7f7 49%,#e1e1e1 50%,#eaeaea 51%, #ccc 100%); /* 标准的语法 */
+}
+.but:after,.but-open:after {
+	display: block;
+  content: " ";
+  position: absolute;
+  top: 25px;
+  right: 3px;
+  height: 0;
+  width: 0;
+  border: 3px solid transparent;
+}
+.but:after {
+	border-top-color: #555;
+}
+.but-open:after {
+	top: 23px;
+  border-bottom-color: #555;
+}
+/* 功能按钮 */
+.tian-editor-but {
+	height: 35px;
+}
+.tian-editor-but .active,
+.tian-editor-but li>a:hover:active,
+.tian-editor-but li>a:active {
+	-webkit-box-shadow: inset 0 0 3px #000;
+  -moz-box-shadow: inset 0 0 3px #000;
+  box-shadow: inset 0 0 3px #000;
+}
+.tian-editor-but .tian-editor-but-box {
+	list-style: none;
+	position: relative;
+}
+.tian-editor-but li,.tian-editor-but li>a {
+	position: relative;
+	float: left;
+	width: 35px;
+	height: 35px;
+}
+.tian-editor-but li>a {
+	background: url('../images/icons.png') no-repeat;
+}
+.tian-editor-but li>a:hover {
+	box-shadow: 0 0 3px #666;
+}
+.tian-editor-but li:nth-last-of-type(2)>a {
+	background: url('../images/preview.png') no-repeat center;
+}
+.tian-editor-but li:last-child {
+	margin-left: 52px;
+}
+.tian-editor-but li:last-child>a{
+	background-position: 5px -170px;
+}
+.tian-editor-but li:nth-child(1)>a {
+	background-position: 5px -545px;
+}
+.tian-editor-but li:nth-child(2)>a {
+	background-position: 5px -120px;;
+}
+.tian-editor-but li:nth-child(3)>a {
+	background-position: 5px -345px;
+}
+.tian-editor-but li:nth-child(4)>a {
+	background-position: 5px -45px;
+}
+.tian-editor-but li:nth-child(5)>a {
+	background-position: 5px -270px;
+}
+.tian-editor-but li:nth-child(6)>a {
+	background-position: 5px -470px;
+}
+.tian-editor-but li:nth-child(7)>a {
+	background-position: 5px -445px;
+}
+.tian-editor-but li:nth-child(8)>a {
+  background-position: 5px -245px;
+}
+.tian-editor-but li:nth-child(9)>a {
+	background-position: 5px -320px;
+}
+.tian-editor-but li:nth-child(10)>a {
+	background-position: 5px -70px;
+}
+.tian-editor-but li:nth-child(11)>a {
+	background-position: 5px -395px;
+}
+.tian-editor-but li:nth-child(12)>a {
+	background-position: 5px -495px;
+}
+.tian-editor-but li:nth-child(13)>a {
+  background-position: 5px -370px;
+}
+.tian-editor-but li:nth-child(14)>a {
+  background-position: 5px -220px;
+}
+.tian-editor-but .li-a-active {
+	background-position: 5px -145px!important;
+}
+/* 下拉菜单 */
+.tian-editor-but-donw-menu {
+	display: none;
+	position: absolute;
+	top: 35px;
+	width: 100%;
+	text-align: center;
+	list-style: none;
+}
+.tian-editor-but-donw-menu .tian-editor-down-head {
+	display: block;
+	padding: 5px 10px;
+	background: none;
+	margin: 0!important;
+	cursor: pointer;
+}
+.tian-editor-but-donw-menu .tian-editor-down-head:hover {
+	background: #ccc;
+}
+.tian-editor-but-donw-menu .tian-editor-down-head:active {
+	background: #999;
+}
+/* 添加链接地址 */
+.tian-add-link-box {
+	display: -none;
+	width: 230px;
+	height: 100px;
+	padding-bottom: 5px;
+	background-color: #fff;
+}
+.tian-link-box-txt {
+	height: 20px;
+	padding: 5px;
+}
+.tian-link-box-txt:nth-child(2){
+	border-top: 1p solid #999;
+}
+.tian-link-box-txt label {
+	width: 24%;
+	float: left;
+	padding-right: 10px;
+	border-right: 1px solid #000;
+}
+.tian-link-box-txt input {
+	width: 60%;
+	margin-left: 10px;
+	float: left;
+}
+.tian-link-box-but {
+	text-align: center;
+	padding: 3px;
+}
+.tian-link-box-but button {
+
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	background: #fff;
+}
+.tian-link-box-but .tian-link-box-but-ok {}
+.tian-link-box-but .tian-link-box-but-cancel {}
+/* 内容编辑区 */
+.tian-edit-area {
+	border-bottom: 1px solid #ccc;
+}
+.tian-edit-area,
+.tian-editor-code {
+	margin: 2px 3px;
+	height: 250px;
+}
+/* 源代码展示 */
+.tian-editor-code {
+	display: none;
+}
+.tian-editor-code textarea {
+	width: 99%;
+	height: 100%;
+}
+/* 拖拽区域 */
+.tian-editor-drag {
+	height: 10px;
+	background: url('../images/handle.png') no-repeat center;
+}
