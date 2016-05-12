@@ -9,7 +9,7 @@
 <body>
 	<div class="tian-editor-box box-shadow">
 		<!-- 功能按钮 -->
-		<div id="J-tian-editor-but" class="tian-editor-but linear">
+		<div id="J-tian-edit-but" class="tian-editor-but linear">
 			<ul class="tian-editor-but-box">
 				<!-- 源代码 -->
 				<li><a href="javascript:void(0)"></a></li>
@@ -60,14 +60,14 @@
 		<!-- 内容编辑区 -->
 		<div id="J-tian-edit-area" class="tian-edit-area" contenteditable="true"></div>
 		<!-- 源代码展示 -->
-		<div class="tian-editor-code">
+		<div id="J-tian-edit-code" class="tian-editor-code">
 			<label for="J-tian-editor"></label>
 			    <textarea id="J-tian-editor-code" class="tian-editor"></textarea>
 		</div>
 		<!-- 拖拽区域 -->
-		<div id="J-tian-editor-drag" class="tian-editor-drag"></div>
+		<div id="J-tian-edit-drag" class="tian-editor-drag"></div>
 		<!-- 填写链接地址及文本 -->
-		<div class="tian-edit-mask">
+		<div id='J-tian-edit-link' class="tian-edit-mask">
 			<div class="tian-add-link-box box-shadow">
 				<!-- 链接地址 -->
 				<div class="tian-link-box-txt">
@@ -77,6 +77,25 @@
 				<!-- 文本内容 -->
 				<div class="tian-link-box-txt">
 					<label for="link-box-txt">文本内容</label>
+					<input type="text" id="link-box-txt">
+				</div>
+				<!-- 链接内容按钮 -->
+				<div class="tian-link-box-but">
+					<button class="tian-link-box-but-ok">确定</button>
+				<button class="tian-link-box-but-cancel">取消</button>
+				</div>
+			</div>
+		</div>
+		<div id='J-tian-edit-img' class="tian-edit-mask">
+			<div class="tian-add-link-box box-shadow">
+				<!-- 链接地址 -->
+				<div class="tian-link-box-txt">
+					<label for="link-box-url">链接地址</label>
+					<input type="text" id="link-box-url">
+				</div>
+				<!-- 文本内容 -->
+				<div class="tian-link-box-txt">
+					<label for="link-box-txt">描述</label>
 					<input type="text" id="link-box-txt">
 				</div>
 				<!-- 链接内容按钮 -->

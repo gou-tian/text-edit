@@ -9,22 +9,34 @@
 			code: opits.code,
 			// 索引值
 			index: opits.index,
+			// 链接
+			link: opits.link,
+			// 图片地址
+			imgLink: opits.imgLink,
+			// 拖拽
+			drag: opits.drag || false,
 			// 事件名
 			events: opits.events || 'click'
 		};
-		this.elemTagName = ['h1','h2','h3','h4',
-							'strong','em','del',
-							'a','img','ul','ol',
-							'hr'];
+		this.elemTagName = ['strong','em','u','del','img','left',
+												'center','right','ul','ol','hr'];
 		this.align = ['left','center','right'];
 	}
 	Editor.prototype = {
 		constructor: Editor,
-		on: tian.on,
-		off: tian.off,
+		extEvent: tian.on,
+		removeEvenet: tian.off,
 		getSeat: tian.seat,
 		// 初始化
-		init: function(){},
+		init: function(){
+			var that = this;
+			for(var i = 0; i < this.opit.index; i++){
+				this.opit.but[i].index = i;
+				this.on(this.opit.but[i],function(){
+					that.addActionEvent.call(that,this.index);
+				});
+			}
+		},
 		// 内容替换
 		replace: function(curVal,tarVal,val){
 			if(tarVal === -1) { return false;}
@@ -35,24 +47,30 @@
 			this.opit.edit.innerHTML = '';
 		},
 		// 事件执行封装
-		extEvent: function(elem,func){
-			this.on(elem,this.opit.events,func);
+		on: function(elem,func){
+			this.extEvent(elem,this.opit.events,func);
 		},
 		// 删除事件
-		removeEvenet: function(elem,func){
-			this.off(elem,this.opit.events,func);
+		off: function(elem,func){
+			this.removeEvenet(elem,this.opit.events,func);
 		},
 		// 添加按钮事件
-		addActionEvent: function(){},
+		addActionEvent: function(index){
+			this.addElementsTab.call(this,index);
+		},
 		// 添加标签
-		addElementsTab: function(){},
+		addElementsTab: function(index){
+			this.createElementsTab(index);
+		},
 		// 创建标签
-		createElementsTab: function(){
+		createElementsTab: function(index){
 			var tab = this.elemTagName;
 			var len = tab.length;
-			var tabStr = '', img = null, link = null,
+			if(index < 3 || index > 7 && index < 11 || index >13){return false;}
+			var tabStr = '<'+ tab[index-3] +'></'+ tab[index-3] +'>',
+					img = null, link = null,
 				listTab = '', num = 0;
-
+				console.log(tabStr);
 		},
 		// 创建图片
 		createImageElements: function(imgAttr){
@@ -82,10 +100,6 @@
 			var link = '<a href="' + src + '">' + str + '</a>';
 			return link;
 		},
-		// 创建链接写入窗口
-		createLinkWindow: function(){
-			
-		},
 		// 获取选中内容
 		getContentChoice: function(){
 			var start = this.getAxis().start;
@@ -104,14 +118,35 @@
 		// 显示内容源码
 		showCode: function(){}
 	};
-
-	function id(id){
-		return document.getElementById(id);
+	function id(idName){
+		return document.getElementById(idName);
 	}
 	function tagName(id,tagName){
 		return id.getElementsByTagName(tagName);
 	}
+	function edit(opis){
+		return new Editor(opis);
+	}
 
 	// 功能按钮
-	var editBut = tagName(id('J-tian-editor-but'),'li');
+	var editBut = tagName(id('J-tian-edit-but'),'li');
+	// 内容编辑区
+	var editArea = id('J-tian-edit-area');
+	// 源代码展示
+	var editCode = id('J-tian-edit-code');
+	// 拖拽区域
+	var editDrag = id('J-tian-edit-drag');
+	// 超链接
+	var editLink = id('J-tian-edit-link');
+	// 图片链接
+	var editImg = id('J-tian-edit-img');
+
+	edit({
+		but: editBut,
+		edit: editArea,
+		code: editCode,
+		link: editLink,
+		imgLink: editImg,
+		index: editBut.length,
+	}).init();
 }(window));

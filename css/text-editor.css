@@ -13,6 +13,7 @@
 	border: 2px solid #ccc\9;
 }
 .tian-edit-mask {
+	display: none;
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.5);
@@ -150,7 +151,6 @@
 }
 /* 添加链接地址 */
 .tian-add-link-box {
-	display: -none;
 	width: 230px;
 	height: 100px;
 	padding-bottom: 5px;
@@ -208,4 +208,7 @@
 .tian-editor-drag {
 	height: 10px;
 	background: url('../images/handle.png') no-repeat center;
+}
+.tian-show {
+	display: block;
 }
