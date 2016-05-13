@@ -380,17 +380,29 @@
     }
     // 获取光标起始和结束位置
     var seat = (function() {
+      var toStr = window.getSelection();
       var start = 0,
         end = 0;
-      if (typeof this.selectionStart === 'number') {
-        start = this.selectionStart;
-        end = this.selectionEnd;
+      if(window.getSelection){
+        start = toStr.anchorOffset;
+        end = toStr.focusOffset;
+      }else {
+        if (typeof this.selectionStart === 'number') {
+          start = this.selectionStart;
+          end = this.selectionEnd;
+        }else {
+          return {
+            start: -1,
+            end: -1
+          };
+        }
       }
       return {
         start: start,
-        end: end
+        end: end,
+        toStr: toString
       };
-    }());
+    });
     return {
       css: app.css,
       bufferMove: app.bufferMove,

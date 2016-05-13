@@ -190,6 +190,7 @@
 /* 内容编辑区 */
 .tian-edit-area {
 	border-bottom: 1px solid #ccc;
+	overflow: auto;
 }
 .tian-edit-area,
 .tian-editor-code {
