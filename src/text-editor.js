@@ -11,6 +11,12 @@
 			index: opits.index,
 			// 链接
 			link: opits.link,
+      // 链接填写框
+      linkBox: linkBox,
+      // 链接地址
+      linkTxt: opits.linkTxt,
+      // 文本内容
+      linkContent: linkContent,
 			// 图片地址
 			imgLink: opits.imgLink,
 			// 拖拽
@@ -26,7 +32,7 @@
 	Editor.prototype = {
 		constructor: Editor,
 		extEvent: tian.on,
-		removeEvenet: tian.off,
+		removeEvent: tian.off,
 		getSeat: tian.seat,
 		// 初始化
 		init: function(){
@@ -65,7 +71,6 @@
 		// 创建标签
 		createElementsTab: function(index){
 			var tab = this.elemTagName;
-			var len = tab.length;
 			var str = '<'+ tab[index-3] +'>' +
 						this.getContentChoice() +
 					  '</'+ tab[index-3] +'>';
@@ -79,7 +84,7 @@
 							// statements_1
 							break;
 						case 2:
-							// statements_1
+              this.createLink();
 							break;
 						case 8:
 							// statements_1
@@ -110,10 +115,8 @@
 							}
 							break;
 						case 'a':
-							console.log(tab[index-3],'a');
-							console.log(str);
 							break;
-						default:
+            default:
 							this.opit.edit.innerHTML = this.replace(
 									this.opit.edit.innerHTML,
 									this.getContentChoice(),
@@ -133,9 +136,6 @@
 				title: imgAttr.title || 'Photo',
 				insert: imgAttr.insert || this.opit.edit
 			};
-			var start = this.getAxis().start;
-			var end = this.getAxis().end;
-			var that = this;
 			var img = new Image();
 			img.src = opit.src;
 			img.alt = opit.alt;
@@ -151,15 +151,29 @@
 		},
 		// 创建超链接
 		createLink: function(src,str){
-			var link = '<a href="' + src + '">' + str + '</a>';
-			return link;
-		},
+      var elem = this.opit.linkBox;
+      var ok = elem.getElementsByTagName('button')[0];
+      var cancel = elem.getElementsByTagName('button')[1];
+      var valLink = this.opit.linkTxt.value;
+      var valTxt = this.opit.linkContent.value;
+
+      elem.style.display = 'block';
+      this.on(ok,function(){
+        console.log(valLink,valTxt);
+      });
+      this.on(cancel,function(){
+        elem.style.display = 'none';
+        valLink = '';
+        valTxt = '';
+      })
+    },
 		// 获取选中内容
 		getContentChoice: function(){
 			var start = this.getAxis().start;
 			var end = this.getAxis().end;
+      var str = this.getAxis().toStr;
 			if (this.opit.edit.innerHTML) {
-				return this.opit.edit.innerHTML.substring(start,end);
+				return str;
 			} else {
 				return this.opit.edit.value.substring(start,end);
 			}
@@ -167,11 +181,12 @@
 		// 获取坐标
 		getAxis: function(){
 			var axisStart = this.getSeat.call(this.opit.edit).start;
-            var axisEnd = this.getSeat.call(this.opit.edit).end;
-            return {
-                start: axisStart,
-                end: axisEnd
-            };
+        var axisEnd = this.getSeat.call(this.opit.edit).end;
+        return {
+            start: axisStart,
+            end: axisEnd,
+            toStr : this.getSeat().toStr
+        };
 		},
 		// 源码显示/隐藏
 		codeShow: function(){
@@ -209,6 +224,12 @@
 	var editLink = id('J-tian-edit-link');
 	// 图片链接
 	var editImg = id('J-tian-edit-img');
+  //
+  var linkBox = id('J-tian-edit-link');
+  // 链接地址
+  var linkTxt = id('link-box-url');
+  // 文本内容
+  var linkContent = id('link-box-txt');
 
 	var divStr = '虽然历史上大部分的初创公司都被西方国家所统治，' +
         '但是从近五年激增的趋势来看，金融科技公司的足迹' +
@@ -223,7 +244,10 @@
 		edit: editArea,
 		code: editCode,
 		link: editLink,
+    linkBox: linkBox,
+    linkTxt: linkTxt,
+    linkContent: linkContent,
 		imgLink: editImg,
-		index: editBut.length,
+		index: editBut.length
 	}).init();
 }(window));
