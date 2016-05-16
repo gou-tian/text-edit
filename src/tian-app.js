@@ -35,12 +35,10 @@
           for (var nature in valName) {
             //获取属性值
             var iTarget = valName[nature];
-            console.log(nature);
             //判断属性
             if (nature == 'opacity') {
               num = Math.round(app.css(obj, 'opacity') * 100);
             } else {
-              console.log(app.css);
               num = parseInt(app.css(obj, nature));
             }
             //速度值计算
