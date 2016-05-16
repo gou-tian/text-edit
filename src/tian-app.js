@@ -379,6 +379,7 @@
     // 获取光标起始和结束位置
     var seat = (function() {
       var toStr = window.getSelection();
+      var toString = toStr.toString();
       var start = 0,
         end = 0;
       if(window.getSelection){
